@@ -49,9 +49,9 @@ def get_fmt(signal):  # type: (canmatrix.Signal) -> str
     return fmt
 
 def signal_field_line(signal):
-    return   u'SignalField("{}", default=0, start={}, size={}, scaling={}, offset={}, unit="{}", fmt="{}"),'.format(
+    return   u'SignalField("{}", default=0, start={}, size={}, scaling={}, offset={}, unit="{}", enum={}, fmt="{}"),'.format(
         signal.name, signal.get_startbit(bit_numbering=1), signal.size, signal.factor, signal.offset,
-        signal.unit, get_fmt(signal))
+        signal.unit, signal.values, get_fmt(signal))
 
 def dump(db, f, **options):  # type: (canmatrix.CanMatrix, typing.IO, **typing.Any) -> None
     scapy_decoder = textwrap.dedent("""    #!/usr/bin/env python
